@@ -84,7 +84,7 @@ class GaussianDiffusionSampler(nn.Module):
         return mean, var
 
     @torch.no_grad()
-    def sample_one_step(self, x_t, time_step):
+    def sample_one_step(self, x_t, time_step: int):
         """
         Calculate $x_{t-1}$ according to $x_t$
         """
