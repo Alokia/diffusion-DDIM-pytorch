@@ -19,6 +19,7 @@ Dataset:
   download: True
   mode: "RGB"
   prefix: ["png", "jpg"]
+  image_size: [28, 28]
   shuffle: True
   drop_last: True
   pin_memory: True
