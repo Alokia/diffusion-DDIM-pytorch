@@ -32,7 +32,7 @@ def train(config):
     for epoch in range(start_epoch, config["epochs"] + 1):
         loss = train_one_epoch(trainer, loader, optimizer, device, epoch)
         model_checkpoint.step(loss, model=model.state_dict(), config=config,
-                              optimizer=optimizer.state_dict(), start_epoch=start_epoch,
+                              optimizer=optimizer.state_dict(), start_epoch=epoch,
                               model_checkpoint=model_checkpoint.state_dict())
 
 
