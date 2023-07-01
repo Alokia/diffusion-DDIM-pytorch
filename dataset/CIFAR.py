@@ -3,7 +3,7 @@ from torchvision import transforms
 from torch.utils.data import DataLoader
 
 
-def create_cifar100_dataset(data_path, batch_size, **kwargs):
+def create_cifar10_dataset(data_path, batch_size, **kwargs):
     train = kwargs.get("train", True)
     download = kwargs.get("download", True)
 
