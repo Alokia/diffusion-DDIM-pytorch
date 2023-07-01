@@ -1,0 +1,40 @@
+# model params
+Model:
+  in_channels: 3
+  out_channels: 3
+  model_channels: 128
+  attention_resolutions: []
+  num_res_blocks: 2
+  dropout: 0
+  channel_mult: [1, 2, 2, 2]
+  conv_resample: True
+  num_heads: 4
+
+# dataset params
+Dataset:
+  dataset: "mnist"
+  train: True
+  data_path: "./data"
+  batch_size: 64
+  download: True
+  mode: "RGB"
+  prefix: ["png", "jpg"]
+  shuffle: True
+  drop_last: True
+  pin_memory: True
+  num_workers: 4
+
+# trainer params
+Trainer:
+  T: 1000
+  beta: [0.0001, 0.02]
+
+# train params
+device: "cuda:0"
+epochs: 200
+save_path: "./checkpoint/unet.pth"
+consume: False
+consume_path: "./checkpoint/unet.pth"
+
+# optimizer params
+lr: 0.0002
