@@ -36,8 +36,10 @@ class ImageDataset(Dataset):
 
 def create_custom_dataset(data_path, batch_size, **kwargs):
     norm = (0.5,) if kwargs.get("mode", "RGB") == "L" else (0.5, 0.5, 0.5)
+    image_size = kwargs.get("image_size", (256, 256))
     trans = transforms.Compose([
         transforms.RandomHorizontalFlip(p=0.5),
+        transforms.Resize(image_size),
         transforms.ToTensor(),
         transforms.Normalize(norm, norm)
     ])
