@@ -1,4 +1,4 @@
-# model params
+### model params
 Model:
   in_channels: 1
   out_channels: 1
@@ -10,38 +10,52 @@ Model:
   conv_resample: True
   num_heads: 4
 
-# dataset params
+### dataset params
 Dataset:
+  # Deciding which dataset to use, must be one of {'mnist', 'cifar', 'custom'}.
   dataset: "mnist"
+  # If mnist and cifar datasets, whether to use the training set.
   train: True
+  # Folder of data sets.
   data_path: "./data"
-  batch_size: 64
+  # If mnist and cifar datasets, whether to download it.
   download: True
+  # If mnist dataset, image_size is [28, 28]. If cifar dataset, image_size is [32, 32]. If custom, specify as needed.
+  image_size: [ 28, 28 ]
+
+  # If custom dataset, what is the mode of the image. must be one of {'RGB', 'L', 'CMYK'}.
   mode: "RGB"
-  prefix: ["png", "jpg"]
-  image_size: [28, 28]
+  # If custom dataset, decide what suffix to load for the image.
+  suffix: ["png", "jpg"]
+
+  # parameters for torch.utils.data.DataLoader
+  batch_size: 64
   shuffle: True
   drop_last: True
   pin_memory: True
   num_workers: 4
 
-# trainer params
+### trainer params
 Trainer:
+  # sample time steps
   T: 500
   beta: [0.0001, 0.02]
 
 
-# callback params
+### callback params
 Callback:
+  # The save path for checkpoint.
   filepath: "./checkpoint/unet.pth"
+  # Frequency of checkpoint saving.
   save_freq: 1
 
-# train params
+### train params
 device: "cuda:0"
 epochs: 200
-
+# Whether to continue training, True or False
 consume: False
+# If continue training, which checkpoint to load
 consume_path: "./checkpoint/unet.pth"
 
-# optimizer params
+### optimizer params
 lr: 0.0002
