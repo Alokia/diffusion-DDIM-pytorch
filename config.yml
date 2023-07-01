@@ -1,12 +1,12 @@
 # model params
 Model:
-  in_channels: 3
-  out_channels: 3
-  model_channels: 128
+  in_channels: 1
+  out_channels: 1
+  model_channels: 96
   attention_resolutions: []
   num_res_blocks: 2
   dropout: 0
-  channel_mult: [1, 2, 2, 2]
+  channel_mult: [1, 2, 2]
   conv_resample: True
   num_heads: 4
 
@@ -26,13 +26,19 @@ Dataset:
 
 # trainer params
 Trainer:
-  T: 1000
+  T: 500
   beta: [0.0001, 0.02]
+
+
+# callback params
+Callback:
+  filepath: "./checkpoint/unet.pth"
+  save_freq: 1
 
 # train params
 device: "cuda:0"
 epochs: 200
-save_path: "./checkpoint/unet.pth"
+
 consume: False
 consume_path: "./checkpoint/unet.pth"
 
