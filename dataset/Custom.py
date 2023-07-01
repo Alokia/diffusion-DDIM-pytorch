@@ -6,7 +6,7 @@ from torchvision import transforms
 
 
 class ImageDataset(Dataset):
-    def __init__(self, path: Union[str, Path], prefix: Iterable[str] = ("png", "jpg"),
+    def __init__(self, path: Union[str, Path], suffix: Iterable[str] = ("png", "jpg"),
                  mode: str = "RGB", transform=None):
         super().__init__()
 
@@ -14,7 +14,7 @@ class ImageDataset(Dataset):
             path = Path(path)
 
         self.images = []
-        for m in prefix:
+        for m in suffix:
             self.images += list(path.glob(f"*.{m}"))
 
         if mode not in ["RGB", "L", "CMYK"]:
@@ -44,7 +44,7 @@ def create_custom_dataset(data_path, batch_size, **kwargs):
         transforms.Normalize(norm, norm)
     ])
     dataset_param = dict(
-        prefix=kwargs.get("prefix", ("png", "jpg")),
+        suffix=kwargs.get("suffix", ("png", "jpg")),
         mode=kwargs.get("mode", "RGB"),
     )
     dataset = ImageDataset(data_path, transform=trans, **dataset_param)
