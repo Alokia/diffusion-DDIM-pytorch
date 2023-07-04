@@ -20,7 +20,7 @@ def parse_option():
     # save image param
     parser.add_argument("--nrow", type=int, default=4)
     parser.add_argument("--show", default=False, action="store_true")
-    parser.add_argument("-sp", "--image_save_path", type=str, default="./data/result/result.png")
+    parser.add_argument("-sp", "--image_save_path", type=str, default=None)
     parser.add_argument("--to_grayscale", default=False, action="store_true")
 
     args = parser.parse_args()
