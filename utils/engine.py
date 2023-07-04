@@ -119,10 +119,9 @@ class GaussianDiffusionSampler(nn.Module):
         with tqdm(reversed(range(self.T)), colour="#6565b5", total=self.T) as time_steps:
             for time_step in time_steps:
                 x_t = self.sample_one_step(x_t, time_step)
-                x_t = torch.clip(x_t, -1.0, 1.0)
 
                 if not only_return_x_0 and ((self.T - time_step) % interval == 0 or time_step == 0):
-                    x.append(x_t)
+                    x.append(torch.clip(x_t, -1.0, 1.0))
 
                 time_steps.set_postfix(ordered_dict={"step": time_step + 1, "sample": len(x)})
 
