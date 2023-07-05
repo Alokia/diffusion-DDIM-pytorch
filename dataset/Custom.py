@@ -1,21 +1,25 @@
+import torch
 from torch.utils.data import DataLoader, Dataset
-from pathlib2 import Path
+from pathlib2 import Path, Iterable
 from typing import Union, Iterable
 from PIL import Image
 from torchvision import transforms
 
 
 class ImageDataset(Dataset):
-    def __init__(self, path: Union[str, Path], suffix: Iterable[str] = ("png", "jpg"),
+    def __init__(self, path: Union[str, Path, Iterable[str | Path]], suffix: Iterable[str] = ("png", "jpg"),
                  mode: str = "RGB", transform=None):
         super().__init__()
 
-        if isinstance(path, str):
-            path = Path(path)
+        if isinstance(path, str) or isinstance(path, Path):
+            path = [path]
 
         self.images = []
         for m in suffix:
-            self.images += list(path.glob(f"*.{m}"))
+            # support for multiple folders of data
+            for p in path:
+                p = Path(p)
+                self.images += list(p.glob(f"*.{m}"))
 
         if mode not in ["RGB", "L", "CMYK"]:
             raise ValueError("mode must be one of {'RGB', 'L', 'CMYK'}")
@@ -31,7 +35,8 @@ class ImageDataset(Dataset):
 
         if self.transform is not None:
             image = self.transform(image)
-        return image
+        # Returns a useless label to correspond to the mnist and cifar dataset format
+        return image, torch.zeros(1)
 
 
 def create_custom_dataset(data_path, batch_size, **kwargs):
