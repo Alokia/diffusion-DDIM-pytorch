@@ -1,27 +1,28 @@
 ### model params
 Model:
-  in_channels: 1
-  out_channels: 1
-  model_channels: 96
-  attention_resolutions: []
+  in_channels: 3
+  out_channels: 3
+  model_channels: 128
+  attention_resolutions: [2, ]
   num_res_blocks: 2
-  dropout: 0
-  channel_mult: [1, 2, 2]
+  dropout: 0.1
+  channel_mult: [1, 2, 2, 2]
   conv_resample: True
   num_heads: 4
 
 ### dataset params
 Dataset:
   # Deciding which dataset to use, must be one of {'mnist', 'cifar', 'custom'}.
-  dataset: "mnist"
+  dataset: "custom"
   # If mnist and cifar datasets, whether to use the training set.
   train: True
-  # Folder of data sets.
-  data_path: "./data"
+  # Folder of data sets. When `dataset = custom`, this parameter can be a list with different folders.
+  # Then all images in the list with suffixes in `suffix` in the folder will be loaded.
+  data_path: ["F:/celeba_hq/train/female", "F:/celeba_hq/train/male"]
   # If mnist and cifar datasets, whether to download it.
   download: True
   # If mnist dataset, image_size is [28, 28]. If cifar dataset, image_size is [32, 32]. If custom, specify as needed.
-  image_size: [ 28, 28 ]
+  image_size: [ 128, 128 ]
 
   # If custom dataset, what is the mode of the image. must be one of {'RGB', 'L', 'CMYK'}.
   mode: "RGB"
@@ -38,24 +39,24 @@ Dataset:
 ### trainer params
 Trainer:
   # sample time steps
-  T: 500
+  T: 1000
   beta: [0.0001, 0.02]
 
 
 ### callback params
 Callback:
   # The save path for checkpoint.
-  filepath: "./checkpoint/unet.pth"
+  filepath: "./checkpoint/celeba_hq.pth"
   # Frequency of checkpoint saving.
   save_freq: 1
 
 ### train params
 device: "cuda:0"
-epochs: 200
+epochs: 20000
 # Whether to continue training, True or False
 consume: False
 # If continue training, which checkpoint to load
-consume_path: "./checkpoint/unet.pth"
+consume_path: "./checkpoint/celeba_hq.pth"
 
 ### optimizer params
 lr: 0.0002
