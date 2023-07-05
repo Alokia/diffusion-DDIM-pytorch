@@ -48,7 +48,8 @@ class GaussianDiffusionTrainer(nn.Module):
         epsilon_theta = self.model(x_t, t)
 
         # get the gradient
-        loss = F.mse_loss(epsilon_theta, epsilon)
+        loss = F.mse_loss(epsilon_theta, epsilon, reduction="none")
+        loss = torch.sum(loss)
         return loss
 
 
