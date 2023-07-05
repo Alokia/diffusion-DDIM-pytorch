@@ -7,7 +7,7 @@ from torchvision import transforms
 
 
 class ImageDataset(Dataset):
-    def __init__(self, path: Union[str, Path, Iterable[str | Path]], suffix: Iterable[str] = ("png", "jpg"),
+    def __init__(self, path: Union[str, Path, Iterable], suffix: Iterable[str] = ("png", "jpg"),
                  mode: str = "RGB", transform=None):
         super().__init__()
 
