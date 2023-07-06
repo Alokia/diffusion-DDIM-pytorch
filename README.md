@@ -25,35 +25,35 @@ After training, run the `generate.py` file to generate the results. These are th
 * `-sp` : save path of the result image. Default  `None`.
 * `--to_grayscale` : convert images to grayscale. Default  `False`.
 
-For example:
-
-```shell
-python generate.py -cp "checkpoint/mnist.pth" -bs 16 --interval 10 --show -sp "data/result/mnist_sampler.png"
-```
-
-```shell
-python generate.py -cp "checkpoint/mnist.pth" -bs 256 --show -sp "data/result/mnist_result.png" --nrow 16 --result_only
-```
-
 
 
 ## Some generated images
 
 * MNIST，[click to download checkpoint](https://drive.google.com/file/d/1gwhczBWOjUtw4Fz_y2PidyKnrUsMSN8t/view?usp=drive_link)
 
+```shell
+python generate.py -cp "checkpoint/mnist.pth" -bs 16 --interval 10 --show -sp "data/result/mnist_sampler.png"
+```
+
 
 ![](data/result/mnist_sampler.png)
 
-
+```shell
+python generate.py -cp "checkpoint/mnist.pth" -bs 256 --show -sp "data/result/mnist_result.png" --nrow 16 --result_only
+```
 
 ![](data/result/mnist_result.png)
 
-
-
 * CIFAR10, [click to download checkpoint](https://drive.google.com/file/d/1NYHGtg_gNKi4GB_-cKbM3nRLHRO3d3xL/view?usp=drive_link)
+
+```shell
+python generate.py -cp "checkpoint/cifar10.pth" -bs 16 --interval 50 --show -sp "data/result/cifar10_sampler.png"
+```
 
 ![](data/result/cifar10_sampler.png)
 
-
+```shell
+python generate.py -cp "checkpoint/cifar10.pth" -bs 256 --show -sp "data/result/cifar10_result.png" --nrow 16 --result_only
+```
 
 ![](data/result/cifar10_result.png)
