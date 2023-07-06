@@ -13,16 +13,16 @@ Model:
 ### dataset params
 Dataset:
   # Deciding which dataset to use, must be one of {'mnist', 'cifar', 'custom'}.
-  dataset: "custom"
+  dataset: "cifar"
   # If mnist and cifar datasets, whether to use the training set.
   train: True
   # Folder of data sets. When `dataset = custom`, this parameter can be a list with different folders.
   # Then all images in the list with suffixes in `suffix` in the folder will be loaded.
-  data_path: ["F:/celeba_hq/train/female", "F:/celeba_hq/train/male"]
+  data_path: "./data"
   # If mnist and cifar datasets, whether to download it.
   download: True
   # If mnist dataset, image_size is [28, 28]. If cifar dataset, image_size is [32, 32]. If custom, specify as needed.
-  image_size: [ 128, 128 ]
+  image_size: [ 32, 32 ]
 
   # If custom dataset, what is the mode of the image. must be one of {'RGB', 'L', 'CMYK'}.
   mode: "RGB"
@@ -46,17 +46,17 @@ Trainer:
 ### callback params
 Callback:
   # The save path for checkpoint.
-  filepath: "./checkpoint/celeba_hq.pth"
+  filepath: "./checkpoint/cifar10.pth"
   # Frequency of checkpoint saving.
   save_freq: 1
 
 ### train params
 device: "cuda:0"
-epochs: 20000
+epochs: 1000
 # Whether to continue training, True or False
 consume: False
 # If continue training, which checkpoint to load
-consume_path: "./checkpoint/celeba_hq.pth"
+consume_path: "./checkpoint/cifar10.pth"
 
 ### optimizer params
 lr: 0.0002
