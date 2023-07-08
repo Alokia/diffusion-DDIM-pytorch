@@ -1,4 +1,4 @@
-from utils.engine import GaussianDiffusionSampler
+from utils.engine import DDPMSampler
 from model.UNet import UNet
 import torch
 from utils.tools import save_sample_image, save_image
@@ -37,7 +37,7 @@ def generate(args):
     model.load_state_dict(cp["model"])
     model.to(device)
 
-    sampler = GaussianDiffusionSampler(model, **cp["config"]["Trainer"]).to(device)
+    sampler = DDPMSampler(model, **cp["config"]["Trainer"]).to(device)
 
     # generate Gaussian noise
     z_t = torch.randn((args.batch_size, cp["config"]["Model"]["in_channels"],

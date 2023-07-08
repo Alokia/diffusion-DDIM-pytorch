@@ -53,7 +53,7 @@ class GaussianDiffusionTrainer(nn.Module):
         return loss
 
 
-class GaussianDiffusionSampler(nn.Module):
+class DDPMSampler(nn.Module):
     def __init__(self, model: nn.Module, beta: Tuple[int, int], T: int):
         super().__init__()
         self.model = model
