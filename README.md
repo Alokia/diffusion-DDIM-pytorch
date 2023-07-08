@@ -44,7 +44,7 @@ python generate.py -cp "checkpoint/mnist.pth" -bs 256 --show -sp "data/result/mn
 
 ![](data/result/mnist_result.png)
 
-* CIFAR10, [click to download checkpoint](https://drive.google.com/file/d/1NYHGtg_gNKi4GB_-cKbM3nRLHRO3d3xL/view?usp=drive_link)
+* CIFAR10, [click to download checkpoint](https://drive.google.com/file/d/1GRVfLSfjGtEPJzxg52k4wj4w2TKk-utO/view?usp=drive_link)
 
 ```shell
 python generate.py -cp "checkpoint/cifar10.pth" -bs 16 --interval 50 --show -sp "data/result/cifar10_sampler.png"
@@ -57,3 +57,17 @@ python generate.py -cp "checkpoint/cifar10.pth" -bs 256 --show -sp "data/result/
 ```
 
 ![](data/result/cifar10_result.png)
+
+* celeba_hq , [click to download checkpoint](https://drive.google.com/file/d/1iuqXF2K2ezSFZO7PYO-4lD5XKhyaXT_m/view?usp=drive_link)
+
+```shell
+python generate.py -cp "checkpoint/celeba_hq.pth" --interval 30 -bs 16 -sp "data/result/celeba_hq_sampler.png" --show
+```
+
+![](./data/result/celeba_hq_sampler.png)
+
+```shell
+python generate.py -cp "checkpoint/celeba_hq.pth" -bs 16 -sp "data/result/celeba_hq_result.png" --show --nrow 4 --result_only
+```
+
+![](./data/result/celeba_hq_result.png)
