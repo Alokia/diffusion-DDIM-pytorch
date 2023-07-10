@@ -42,6 +42,7 @@ def generate(args):
     model = UNet(**cp["config"]["Model"])
     model.load_state_dict(cp["model"])
     model.to(device)
+    model = model.eval()
 
     if args.sampler == "ddim":
         sampler = DDIMSampler(model, **cp["config"]["Trainer"]).to(device)
